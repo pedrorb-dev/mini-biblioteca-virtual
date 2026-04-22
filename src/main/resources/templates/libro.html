@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>El Rincón del Libro - Detalle del Libro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+        form .invalid-feedback {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">El Rincón del Libro</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/libros">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin">Administración</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <!-- Aquí va el contenido original de tu libro.html -->
+        <div th:object="${libro}">
+            <div class="row">
+                <div class="col-md-4">
+                    <img th:if="*{rutaPortada != null}" th:src="@{/assets/{filename}(filename=*{rutaPortada})}"
+                        th:alt="*{titulo}" class="img-fluid rounded shadow">
+                    <img th:unless="*{rutaPortada != null}" src="https://via.placeholder.com/400x500?text=Sin+Portada"
+                        class="img-fluid rounded shadow">
+                </div>
+                <div class="col-md-8">
+                    <h1 th:text="*{titulo}">Título del libro</h1>
+                    <p class="text-muted" th:if="*{fecha != null}" th:text="*{#temporals.format(fecha, 'dd/MM/yyyy')}">
+                        Fecha publicación
+                    </p>
+                    <p class="text-muted" th:if="*{fecha == null}">Fecha no disponible</p>
+
+                    <h5 class="mt-4">Sinopsis</h5>
+                    <p th:text="*{sinopsis}">Sinopsis del libro...</p>
+
+                    <h5 class="mt-4">Editorial</h5>
+                    <p th:text="*{editorial}">Editorial</p>
+
+                    <h5 class="mt-4">Autores</h5>
+                    <p th:text="*{autores}">Autores</p>
+
+                    <a th:if="*{urlLibro != null}" th:href="*{urlLibro}" class="btn btn-primary mt-3" target="_blank">
+                        Ver Libro
+                    </a>
+                    <a href="/libros" class="btn btn-secondary mt-3">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+</body>
+
+</html>

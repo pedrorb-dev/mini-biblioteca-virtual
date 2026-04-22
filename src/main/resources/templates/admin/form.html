@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+    <div layout:fragment="form">
+        <br>
+        <form action="" method="post" th:object="${libro}" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Titulo : </label> <input type="text" id="titulo"
+                    placeholder="Introduzca el titulo" class="form-control" th:field="*{titulo}">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="editorial" class="form-label">Editorial : </label> <input type="text" id="editorial"
+                    placeholder="Introduzca la editorial" class="form-control" th:field="*{editorial}">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('editorial')}" th:errors="*{editorial}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="sinopsis" class="form-label">Sinopsis : </label>
+                <textarea id="sinopsis" placeholder="Digite la sinopsis" class="form-control"
+                    th:field="*{sinopsis}"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('sinopsis')}" th:errors="*{sinopsis}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="urlLibro" class="form-label">Url del Libro : </label> <input type="text" id="urlLibro"
+                    placeholder="Introduzca el url del libro" class="form-control" th:field="*{urlLibro}">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('urlLibro')}" th:errors="*{urlLibro}"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha : </label> <input type="date" id="fecha"
+                    placeholder="Digite la fecha" class="form-control" th:field="*{fecha}">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="portada" class="form-label">Portada : </label> <input type="file" name="portada"
+                    id="portada" class="form-control" th:field="*{portada}">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="autores" class="form-label">Autor : </label> <select id="autores" class="form-control"
+                    th:field="*{autores}" multiple>
+                    <option th:each="autor : ${autores}" th:value="${autor.id_autor}" th:text="${autor.nombre}">
+                    </option>
+                </select>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('autores')}" th:errors="*{autores}"></div>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
