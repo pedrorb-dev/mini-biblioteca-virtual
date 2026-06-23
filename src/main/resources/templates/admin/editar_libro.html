@@ -37,7 +37,6 @@
     </nav>
 
     <div class="container my-5">
-        <!-- Aquí va el contenido original de tu admin/editar_libro.html -->
         <h1>Editar Libro</h1>
 
         <form th:action="@{/admin/libros/{id}/editar(id=${libro.id_libro})}" th:object="${libro}" method="post"

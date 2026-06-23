@@ -58,7 +58,7 @@ public class HomeControlador {
             return "redirect:/descargar-archivo";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "error al procesar la descarga");
-            return "redirect:/";
+            return "redirect:/libros";
         }
     }
 
@@ -74,7 +74,7 @@ public class HomeControlador {
                 conexion.setRequestProperty("User-Agent", "Mozilla/5.0");
 
                 try (InputStream is = conexion.getInputStream()) {
-                    byte[] buffer = new byte[16000]; // 16kb
+                    byte[] buffer = new byte[16000]; 
                     int bytes;
                     while ((bytes = is.read(buffer)) != -1) {
                         otpStream.write(buffer, 0, bytes);

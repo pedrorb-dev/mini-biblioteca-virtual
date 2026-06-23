@@ -37,7 +37,7 @@
     </nav>
 
     <div class="container my-5">
-        <!-- Aquí va el contenido original de tu libro.html -->
+        
         <div th:object="${libro}">
             <div class="row">
                 <div class="col-md-4">
@@ -62,9 +62,12 @@
                     <h5 class="mt-4">Autores</h5>
                     <p th:text="*{autores}">Autores</p>
 
-                    <a th:if="*{urlLibro != null}" th:href="*{urlLibro}" class="btn btn-primary mt-3" target="_blank">
-                        Ver Libro
-                    </a>
+                    <form action="/descargar" method="post">
+                            <input type="hidden" name="url" th:value="*{urlLibro}">
+                        <button type="submit" class="btn btn-primary" id="descargar">
+                            Descargar Libro
+                        </button>
+                    </form>
                     <a href="/libros" class="btn btn-secondary mt-3">Volver al Inicio</a>
                 </div>
             </div>
